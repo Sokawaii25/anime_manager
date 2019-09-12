@@ -1,0 +1,2 @@
+kissanime https://kissanime.ru/Anime/[nom animé avec tirets]/Episode-[n° épisone 3 chiffres]?[id animé/épisode]9&s=default
+crunchyroll https://www.crunchyroll.com/en-gb/[nom animé]/episode-[n° épisode]-[nom épisode]-[id animé/épisode]
