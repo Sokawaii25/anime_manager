@@ -1,0 +1,32 @@
+{
+  "animés en cours": [
+    {
+      "name": "akame ga kill",
+      "ep": 12
+    },
+    {
+      "name": "new",
+      "ep": 0
+    },
+    {
+      "name": "kill la kill",
+      "ep": 10
+    }
+  ],
+  "animés à regarder": ["add suggestions"],
+  "sites": [
+    "www.gum-gum-streaming.com/",
+    "www.voiranime.tv/"
+  ],
+  "animés finis": [
+    "Miriad no phantom world",
+    "Hôseki no kuni",
+    "Re: Zero",
+    "Konosuba(Kono Subarashii sekai shukufuku o)",
+    "Mirai nikki",
+    "Little witch academia",
+    "Akame ga kill!",
+    "Fairy tail",
+    "Working !"
+  ]
+}
