@@ -28,7 +28,8 @@ void param() {
   textFont(defaut, 15);
   if (choix==3) {
     text(input, width/4, 0.245*height+3);
-    if (keyCode==ENTER && input.equals("")==false && input.equals(" ")==false) {
+    if (keyCode==ENTER && !input.equals("") && !input.equals(" ")) {
+      input=input.substring(0, input.length()-1);
       suggestions.append(input);
       keyCode=0;
       input="";
@@ -46,7 +47,7 @@ void param() {
   }
   if (mouseX>0.25*width-150&&mouseX<0.25*width+150&&mouseY>0.24*height-15&&mouseY<0.24*height+15&&mousePressed) {
     choix=3;
-    input = suggest;
+    input = suggest + "_";
   }
   if (!(mouseX>0.25*width-150&&mouseX<0.25*width+150&&mouseY>0.24*height-15&&mouseY<0.24*height+15)&&mousePressed) {
     choix = 0;

@@ -18,7 +18,14 @@ void setup() {
   surface.setTitle("Anime manager");
   icone=loadImage("icone.png");
   surface.setIcon(icone);
-  anime = loadJSONObject("animes.json");
+  try {
+    anime = loadJSONObject("C:/Users/"+System.getProperty("user.name")+"/Documents/anime_manager_data/animes.json");
+  }
+  catch (Exception e){
+    anime = loadJSONObject("data/animes.json");
+    saveJSONObject(anime, "C:/Users/"+System.getProperty("user.name")+"/Documents/anime_manager_data/animes.json");
+    anime = loadJSONObject("C:/Users/"+System.getProperty("user.name")+"/Documents/anime_manager_data/animes.json");
+  }
   suggestions = anime.getJSONArray("animés à regarder");
   suggestionindex = int(random(0, suggestions.size()));
   suggestion = suggestions.getString(suggestionindex);
@@ -89,33 +96,18 @@ void draw() {
     if (choix==1) {
       text(input, width/2, 0.11*height);
       if (keyCode==ENTER) {
-        if (input.equals("fini")==true) {
-          finis.append(name);
-          if (name==name1) {
-            un.setString("name", "new");
-            un.setInt("ep", 0);
-          } else if (name==name2) {
-            deux.setString("name", "new");
-            deux.setInt("ep", 0);
-          } else {
-            trois.setString("name", "new");
-            trois.setInt("ep", 0);
-          }
-          name = "new";
-          ep = "0";
+        input=input.substring(0, input.length()-1);
+        if (name==name1) {
+          un.setString("name", input);
+        } else if (name==name2) {
+          deux.setString("name", input);
         } else {
-          if (name==name1) {
-            un.setString("name", input);
-          } else if (name==name2) {
-            deux.setString("name", input);
-          } else {
-            trois.setString("name", input);
-          }
-          name = input;
-          keyCode=0;
-          input="";
-          choix=0;
+          trois.setString("name", input);
         }
+        name = input;
+        keyCode=0;
+        input="_";
+        choix=0;
       }
     } else {
       text(name, width/2, 0.11*height);
@@ -123,7 +115,7 @@ void draw() {
 
     if (mouseX>0.285*width&&mouseX<0.71*width&&mouseY>0.08*height&&mouseY<0.12*height&&mousePressed) {
       choix=1;
-      input = name;
+      input = name + "_";
     }
 
     //numéro de l'épisode à regarder
@@ -141,7 +133,8 @@ void draw() {
     if (choix==2) {
       text(input, width/2, 0.215*height);
       if (keyCode==ENTER) {
-        if (input.equals("finished")==true) {
+        input=input.substring(0, input.length()-1);
+        if (input.equals("finished")||input.equals("fini")) {
           finis.append(name);
           if (name==name1) {
             un.setString("name", "new");
@@ -166,7 +159,7 @@ void draw() {
           }
         }
         keyCode=0;
-        input="";
+        input="_";
         choix=0;
         loop();
       }
@@ -176,7 +169,7 @@ void draw() {
     textSize(18);
 
     if (mouseX>0.425*width&&mouseX<0.57*width&&mouseY>0.185*height&&mouseY<0.225*height&&mousePressed) {
-      input = ep;
+      input = ep + "_";
       choix=2;
     }
 
@@ -229,7 +222,7 @@ void draw() {
 
 void mouseReleased() {
   if (mouseX>0.4*width&&mouseX<0.6*width&&mouseY>0.895*height-30&&mouseY<0.895*height+30) {
-    saveJSONObject(anime, "data/animes.json");
+    saveJSONObject(anime, "C:/Users/"+System.getProperty("user.name")+"/Documents/anime_manager_data/animes.json");
   }
   /*if (mouseX>0.6*width&&mouseX<0.8*width&&mouseY>0.85*height&&mouseY<0.93*height) {
    name=name.replaceAll(" ", "-");
@@ -344,7 +337,7 @@ void help() {
 }
 
 void exit() {
-  saveJSONObject(anime, "data/animes.json");
+  saveJSONObject(anime, "C:/Users/"+System.getProperty("user.name")+"/Documents/anime_manager_data/animes.json");
   super.exit();
 }
 
@@ -352,5 +345,4 @@ void exit() {
  gogoanimé
  
  bugs connus :
- l'app ne veut pas se fermer** (to test on linux)
  */

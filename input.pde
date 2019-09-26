@@ -8,16 +8,22 @@ void keyReleased() {
     write=true;
   }
   if (keyCode==DELETE) {
-    input="";
+    input="_";
   }
-  if (keyCode==BACKSPACE&&input.length()>0) {
-    input=input.substring(0, input.length()-1);
+  if (keyCode==BACKSPACE&&input.length()>1) {
+    input=input.substring(0, input.length()-2);
+    input+="_";
+  }
+  if (key == 'Z'){
+    popupstate = 1;
+    popup = new second(popupstate);
   }
 }
 
 void input() {
   if (write) {
-    input+=letter;
+    input=input.substring(0, input.length()-1);
+    input+=letter+"_";
     write=false;
   }
 }
